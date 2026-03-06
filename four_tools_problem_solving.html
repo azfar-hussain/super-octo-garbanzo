@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addendum: The Four Tools Through Problem-Solving Stages</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --text: #000000;
+            --bg: #ffffff;
+            --light: #cccccc;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Header */
+        header {
+            padding: 4rem 2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--text);
+            max-width: 80ch;
+            margin: 0 auto;
+        }
+
+        .header-tag {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        h1.main-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            letter-spacing: 0;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 80ch;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        section h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            margin-top: 0;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        section h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        em {
+            font-style: normal;
+            letter-spacing: 0.05em;
+        }
+
+        /* Divider */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: var(--text);
+            margin: 2rem 0;
+        }
+
+        /* Stage Container */
+        .stage {
+            border: 1px solid var(--text);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stage h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .stage-subtitle {
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        /* Tool List */
+        .tools-list {
+            margin: 1rem 0;
+        }
+
+        .tool-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 1px solid var(--text);
+        }
+
+        .tool-name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tool-role {
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .tool p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* Callout / Emphasis */
+        .callout {
+            border: 1px solid var(--text);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .callout::before {
+            content: '> ';
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--text);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Line numbers / Code-like styling */
+        .line {
+            display: flex;
+        }
+
+        .line-num {
+            color: var(--light);
+            margin-right: 1.5rem;
+            user-select: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1.5rem;
+            }
+
+            h1.main-title {
+                font-size: 1.4rem;
+            }
+
+            main {
+                padding: 2rem 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.2rem;
+            }
+
+            section h3 {
+                font-size: 1rem;
+            }
+
+            .stage {
+                padding: 1rem;
+            }
+        }
+
+        /* Selection */
+        ::selection {
+            background-color: var(--text);
+            color: var(--bg);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--text);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--text);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p class="header-tag">-- ADDENDUM</p>
+        <h1 class="main-title">THE FOUR TOOLS THROUGH PROBLEM-SOLVING STAGES</h1>
+        <p class="subtitle">How Intuition, Logic, Passion, and Reflection Work in Concert</p>
+    </header>
+
+    <main>
+        <!-- Introduction -->
+        <section id="intro">
+            <h2>INTEGRATION AT EACH STAGE</h2>
+            <p>The four cognitive tools—intuition, logic, passion, and reflection—do not work in isolation. Rather, they work in concert throughout the problem-solving process, each addressing different uncertainties at different stages.</p>
+            <p>At each stage, we reduce a different kind of uncertainty. At each stage, different tools become primary while the others provide essential support.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Stage 1 -->
+        <section id="stage1">
+            <div class="stage">
+                <h3>STAGE 1: RECOGNIZING THE PROBLEM</h3>
+                <p class="stage-subtitle">Reducing uncertainty about what's wrong</p>
+
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-name">INTUITION</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Detects the signal in noise. Something feels wrong even when metrics look normal. The gut feeling that alerts us that our current model of reality is incomplete.</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">REFLECTION</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Questions the intuition. Is this real insight or projection? What evidence supports this feeling? Are we noticing something genuine, or pattern-matching inappropriately?</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">PASSION</div>
+                        <div class="tool-role">[SUPPORTING]</div>
+                        <p>Motivates investigation rather than dismissal. Gives energy to pursue the intuitive sense despite resistance or comfort in ignoring it.</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">LOGIC</div>
+                        <div class="tool-role">[SUPPORTING]</div>
+                        <p>Not primary yet. Begins structuring the vague into articulated concerns. Helps frame what the intuitive sense might mean.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stage 2 -->
+        <section id="stage2">
+            <div class="stage">
+                <h3>STAGE 2: UNDERSTANDING THE PROBLEM</h3>
+                <p class="stage-subtitle">Reducing uncertainty about causes and scope</p>
+
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-name">LOGIC</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Maps the problem systematically. Identifies variables, constraints, dependencies. Creates explicit understanding of what we know and what we're assuming.</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">REFLECTION</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Questions the logical map. Are we looking at the real problem or a symptom? What assumptions underlie our analysis? Are our definitions hiding something?</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">INTUITION</div>
+                        <div class="tool-role">[SUPPORTING]</div>
+                        <p>Recognizes patterns in the data that pure logic might miss or dismiss. Senses when the logical map doesn't match lived reality.</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">PASSION</div>
+                        <div class="tool-role">[SUPPORTING]</div>
+                        <p>Keeps focus on what actually matters. Prevents optimizing metrics that don't reflect real human concerns. Ensures we're solving for what we genuinely care about.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stage 3 -->
+        <section id="stage3">
+            <div class="stage">
+                <h3>STAGE 3: GENERATING SOLUTIONS</h3>
+                <p class="stage-subtitle">Reducing uncertainty about what might work</p>
+
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-name">INTUITION</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Generates possibilities from pattern knowledge absorbed over time. Illuminates unconventional solutions that pure logic might never construct.</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">LOGIC</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Filters which possibilities are viable. Questions whether an intuitive solution actually makes sense. Traces consequences: what would happen if we did this?</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">REFLECTION</div>
+                        <div class="tool-role">[SUPPORTING]</div>
+                        <p>Questions whether proposed solutions actually address root causes or just symptoms. Are we solving the real problem, or avoiding the harder work?</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">PASSION</div>
+                        <div class="tool-role">[SUPPORTING]</div>
+                        <p>Motivates creative thinking and unconventional approaches. Prevents settling for easy solutions that don't align with what we care about.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stage 4 -->
+        <section id="stage4">
+            <div class="stage">
+                <h3>STAGE 4: EVALUATING SOLUTIONS</h3>
+                <p class="stage-subtitle">Reducing uncertainty about consequences</p>
+
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-name">LOGIC</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Systematically compares options against criteria. Traces consequences, costs, risks, tradeoffs. Lays out what we actually know about each option.</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">REFLECTION + PASSION</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Together ask the hard question: what do we actually value? Which tradeoffs align with our deepest commitments? Which option do we genuinely care about?</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">INTUITION</div>
+                        <div class="tool-role">[SUPPORTING]</div>
+                        <p>Provides gut sense of which option "feels right" after considering all factors. Signals integration of knowledge—a wholistic assessment beyond logical comparison.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stage 5 -->
+        <section id="stage5">
+            <div class="stage">
+                <h3>STAGE 5: IMPLEMENTING THE SOLUTION</h3>
+                <p class="stage-subtitle">Reducing uncertainty through real-world engagement</p>
+
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-name">PASSION</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Provides commitment to persist through obstacles and setbacks. Maintains energy and will despite difficulties. Anchors you to why this matters.</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">INTUITION</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Adjusts tactics in real-time as you encounter reality. Senses where friction is occurring. Recognizes when something isn't working before data confirms it.</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">REFLECTION</div>
+                        <div class="tool-role">[PRIMARY]</div>
+                        <p>Monitors outcomes. Is this working as expected? What are we learning? Do we need to adjust course? Should we abandon this approach? Are our assumptions holding?</p>
+                    </div>
+
+                    <div class="tool-item">
+                        <div class="tool-name">LOGIC</div>
+                        <div class="tool-role">[SUPPORTING]</div>
+                        <p>Analyzes what's working and what isn't. Traces cause and effect in practice. Processes feedback systematically to inform adjustments.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- The Cycle -->
+        <section id="cycle">
+            <h2>THE INTEGRATION CYCLE</h2>
+            
+            <p>Problem-solving is not a linear progression through these five stages. Rather, it is a dynamic cycle where each tool strengthens the others:</p>
+
+            <div class="callout">Logic's systematic analysis feeds intuition—it gives intuition data to work with. Intuition's insights prompt reflection—they raise questions about assumptions. Reflection's honesty fuels passion—it clarifies what truly matters. Passion's commitment allows you to implement and learn, which feeds back into intuition, enriching the patterns you can recognize.</div>
+
+            <p>As you cycle through these stages, you accumulate real-world experience. This experience becomes the substrate for intuition. Your intuitions become more reliable because they're grounded in deeper understanding. Your understanding deepens because intuition alerts you to patterns and anomalies. Your reflection improves because you have more data about yourself and your blindnesses. Your passion becomes more grounded because you see what actually matters in practice.</p>
+
+            <p>This is how we grow wiser. Not through any single tool, but through the integration of all four, cycling through repeated problem-solving, learning from each attempt.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Conclusion -->
+        <section id="conclusion">
+            <h2>WHY ALL FOUR MATTER</h2>
+            
+            <p>WITHOUT INTUITION: You can analyze forever without recognizing when a problem exists, and without generating novel solutions. You become paralyzed by information gaps that analysis alone cannot close.</p>
+
+            <p>WITHOUT LOGIC: You act on patterns that don't make sense, solve the wrong problem, miss obvious consequences. You mistake confidence for competence.</p>
+
+            <p>WITHOUT REFLECTION: You remain blind to your own biases and assumptions. You don't notice when you're optimizing the wrong metric or rationalizing a choice you've already emotionally made.</p>
+
+            <p>WITHOUT PASSION: You lack the commitment to implement despite uncertainty. You have knowledge without the will to act. You remain perpetually in the position of observer rather than agent.</p>
+
+            <p>Effective problem-solving requires all four working in concert. It's not that one tool is primary and the others secondary. Rather, at different stages, different tools take the lead—but all are present, supporting, checking, and strengthening one another.</p>
+
+            <p>This is the deep wisdom of the composite nature: we are not purely rational, purely intuitive, purely passionate, or purely reflective. We are all of these together. And our power lies in integrating these capacities in service of understanding and acting in a complex, uncertain world.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>THE FOUR TOOLS THROUGH PROBLEM-SOLVING STAGES</p>
+    </footer>
+</body>
+</html>
