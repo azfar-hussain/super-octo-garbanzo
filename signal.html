@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metrics Over Vision</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #1a1a1a;
+            color: #e8e8e8;
+            line-height: 1.8;
+            letter-spacing: 0.02em;
+            overflow-x: hidden;
+        }
+
+        /* Subtle paper texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 255, 255, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header {
+            margin-bottom: 50px;
+            border-bottom: 2px solid #404040;
+            padding-bottom: 30px;
+        }
+
+        .main-title {
+            font-size: 48px;
+            letter-spacing: 0.12em;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: fadeInDown 0.8s ease-out;
+            line-height: 1.2;
+        }
+
+        .title {
+            font-size: 14px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #888;
+            font-weight: 600;
+            margin-bottom: 10px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .content {
+            display: grid;
+            gap: 28px;
+        }
+
+        .paragraph {
+            font-size: 15px;
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .paragraph:nth-child(1) { animation-delay: 0.1s; }
+        .paragraph:nth-child(2) { animation-delay: 0.2s; }
+        .paragraph:nth-child(3) { animation-delay: 0.3s; }
+        .paragraph:nth-child(4) { animation-delay: 0.4s; }
+
+        .paragraph strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .accent {
+            color: #a8a8a8;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #404040;
+            font-size: 12px;
+            color: #666;
+            letter-spacing: 0.08em;
+            animation: fadeIn 1.2s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 12px;
+            height: 18px;
+            background-color: #e8e8e8;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 24px;
+            }
+
+            .paragraph {
+                font-size: 14px;
+            }
+
+            .title {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">SIGNAL</h1>
+            <div class="title">On Metrics & Structure</div>
+        </div>
+
+        <div class="content">
+            <div class="paragraph">
+                We respond to <strong>metrics</strong>, not to visions. The grandeur of a vision does not replace the need for structure to make it actionable. Can we define a metric for how actionable a given structure actually is?
+            </div>
+
+            <div class="paragraph">
+                In that structure we can celebrate <strong>regularities</strong> — patterns created by disciplined work, and patterns deliberately built into the system itself. During the grind, we need targets that deliver the most relevant signal and place us on the path of least resistance toward the objective.
+            </div>
+
+            <div class="paragraph">
+                <strong>Ownership must be explicit</strong> at each phase and for the cycle itself, or the framework remains advisory rather than actionable.
+            </div>
+
+            <div class="paragraph">
+                <strong>Metrics are the signal we respond to.</strong> Everything else is confusion and ambiguity.
+            </div>
+        </div>
+
+        <div class="footer">
+            ── signal over noise ──<span class="cursor"></span>
+        </div>
+    </div>
+</body>
+</html>
