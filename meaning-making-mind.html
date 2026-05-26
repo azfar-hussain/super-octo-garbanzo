@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Meaning-Making Mind</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #1a1a14;
+      --paper: #f5f0e8;
+      --faded: #8a8070;
+      --accent: #3d2b1f;
+      --rule: #c8bfaa;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 18px; }
+
+    body {
+      background-color: var(--paper);
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 31px,
+          var(--rule) 31px,
+          var(--rule) 32px
+        );
+      color: var(--ink);
+      font-family: 'Courier Prime', monospace;
+      min-height: 100vh;
+      padding: 80px 24px 120px;
+    }
+
+    /* Subtle paper grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Red margin line */
+    .page::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -28px;
+      width: 2px;
+      background: rgba(180, 60, 60, 0.35);
+    }
+
+    /* Header */
+    .meta {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.72rem;
+      color: var(--faded);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    h1 {
+      font-family: 'Special Elite', cursive;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    h1 .underscore {
+      display: inline-block;
+      width: 0.55em;
+      height: 3px;
+      background: var(--accent);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+      animation-delay: 1.8s;
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .divider span {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.7rem;
+      color: var(--faded);
+      letter-spacing: 0.2em;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* Body copy */
+    .essay p {
+      font-size: 1rem;
+      line-height: 2;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .essay p:nth-child(1) { animation-delay: 0.8s; }
+    .essay p:nth-child(2) { animation-delay: 1.0s; }
+    .essay p:nth-child(3) { animation-delay: 1.2s; }
+    .essay p:nth-child(4) { animation-delay: 1.4s; }
+    .essay p:nth-child(5) { animation-delay: 1.6s; }
+
+    .essay p em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 3px solid var(--accent);
+      margin: 2.5rem 0 2.5rem 1rem;
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      font-family: 'Special Elite', cursive;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--accent);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--faded);
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 1.8s;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Page number stamp */
+    .page-num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.7rem;
+      color: var(--faded);
+      text-align: right;
+      margin-top: 12px;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 2s;
+    }
+
+    /* Keyframes */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body { padding: 48px 20px 80px 36px; }
+      .page::before { left: -18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <p class="meta">Essay &nbsp;/&nbsp; Philosophy of Mind &nbsp;/&nbsp; 2026</p>
+
+    <h1>The Meaning&#8209;Making Mind<span class="underscore"></span></h1>
+
+    <div class="divider"><span>&#9670;</span></div>
+
+    <div class="essay">
+
+      <p>
+        The human brain is, at its core, a meaning-making machine — restless until it finds
+        pattern, purpose, and coherence in the chaos of existence.
+      </p>
+
+      <p>
+        Religion stands as perhaps the oldest and most elaborate expression of this impulse.
+        Through prayer, moral codes, and a carefully constructed architecture of rewards and
+        consequences, organized belief systems offer a lifelong framework — beginning in early
+        adulthood and extending to one's final breath — that transforms every action, mishap,
+        and coincidence into something deliberate. A sudden misfortune is not mere bad luck;
+        it is a message from the heavens. A stroke of good fortune is not random; it is grace.
+        Nothing is left unaccounted for, and nothing is without meaning.
+      </p>
+
+      <p>
+        Spirituality, while less structured, shares this same essential thread. It presents
+        life as a journey — one in which hardship, joy, loss, and revelation are not isolated
+        events but interconnected chapters of a larger story. Suffering becomes growth;
+        struggle becomes purpose; and the scattered fragments of individual experience
+        gradually assemble into a coherent and greater whole.
+      </p>
+
+      <p>
+        What both frameworks reveal is a fundamental truth about human psychology: we do not
+        merely live our lives — we interpret them. Every experience is filtered through the
+        lens of belief, and that belief quietly but powerfully shapes our conduct and behavior.
+      </p>
+
+      <div class="pull-quote">
+        "Life can only be lived forward — yet it can only be understood looking backward."
+        <br/><small style="font-family:'Courier Prime',monospace; font-size:0.72rem; letter-spacing:0.1em;">— Steve Jobs, Stanford Commencement, 2005</small>
+      </div>
+
+      <p>
+        Steve Jobs captured this beautifully in his 2005 Stanford Commencement address. It is
+        only in retrospect that the seemingly random dots of our existence connect, and meaning
+        quietly announces itself. This, perhaps, is what the meaning-making mind has always
+        been reaching for.
+      </p>
+
+    </div>
+
+    <footer>
+      <span>The Meaning-Making Mind</span>
+      <span>Compiled 2026</span>
+    </footer>
+
+    <p class="page-num">— 1 —</p>
+
+  </div>
+</body>
+</html>
