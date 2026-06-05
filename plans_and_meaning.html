@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Experience & Expectation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --paper: #f5f0e8;
+      --ink: #2b2418;
+      --ink-faded: #6b5a45;
+      --red-margin: #c0392b;
+      --rule: #d9cfc0;
+      --shadow: #cfc5b0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #e8e0d0;
+      background-image:
+        repeating-linear-gradient(
+          transparent,
+          transparent 31px,
+          var(--rule) 31px,
+          var(--rule) 32px
+        );
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier Prime', monospace;
+      padding: 3rem 1rem;
+    }
+
+    .page {
+      background: var(--paper);
+      width: 100%;
+      max-width: 680px;
+      padding: 4rem 4rem 4.5rem 6rem;
+      position: relative;
+      box-shadow:
+        2px 2px 0 var(--shadow),
+        4px 4px 0 #bdb3a0,
+        6px 6px 12px rgba(0,0,0,0.18);
+
+      /* Ruled lines on the page itself */
+      background-image:
+        repeating-linear-gradient(
+          transparent,
+          transparent 31px,
+          var(--rule) 31px,
+          var(--rule) 32px
+        );
+      background-size: 100% 32px;
+      background-position: 0 1.5rem;
+    }
+
+    /* Red margin line */
+    .page::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 4.5rem;
+      width: 2px;
+      height: 100%;
+      background: var(--red-margin);
+      opacity: 0.55;
+    }
+
+    /* Punch holes */
+    .page::after {
+      content: '';
+      position: absolute;
+      left: 1.4rem;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 60px,
+        #b0a898 60px,
+        #b0a898 61px,
+        transparent 61px,
+        transparent 80px
+      );
+    }
+
+    .hole {
+      position: absolute;
+      left: 1rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 50%;
+      background: #e8e0d0;
+      border: 1.5px solid #b0a898;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .heading {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.45rem;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      line-height: 2rem;
+      margin-bottom: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      border-right: 2px solid var(--ink);
+      animation:
+        typeHeading 1.6s steps(38, end) 0.4s forwards,
+        blinkCursor 0.75s step-end 0.4s 3;
+    }
+
+    .body-text {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.97rem;
+      color: var(--ink);
+      line-height: 2rem;
+      opacity: 0;
+      white-space: pre-wrap;
+      overflow: hidden;
+      border-right: 2px solid transparent;
+      animation:
+        fadeReveal 0.3s ease 2.3s forwards;
+    }
+
+    .body-text .typed {
+      display: inline;
+      overflow: hidden;
+      white-space: pre-wrap;
+      width: 0;
+      border-right: 2px solid var(--ink);
+      animation:
+        typeBody 5s steps(480, end) 2.4s forwards,
+        blinkCursor 0.75s step-end 2.4s 10,
+        hideCursor 0s linear 7.5s forwards;
+    }
+
+    /* Stamp */
+    .stamp {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 3rem;
+      font-family: 'Special Elite', cursive;
+      font-size: 0.65rem;
+      color: var(--red-margin);
+      border: 1.5px solid var(--red-margin);
+      padding: 0.3rem 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: rotate(-6deg);
+      animation: stampIn 0.4s ease 8s forwards;
+    }
+
+    @keyframes typeHeading {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+    @keyframes blinkCursor {
+      50% { border-color: transparent; }
+    }
+    @keyframes hideCursor {
+      to { border-right-color: transparent; }
+    }
+    @keyframes fadeReveal {
+      to { opacity: 1; }
+    }
+    @keyframes typeBody {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+    @keyframes stampIn {
+      to { opacity: 0.7; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+    <!-- Punch holes -->
+    <div class="hole" style="top: 2.5rem;"></div>
+    <div class="hole" style="top: 50%;  transform: translateY(-50%);"></div>
+    <div class="hole" style="bottom: 2.5rem;"></div>
+
+    <h1 class="heading">Experience &amp; Expectation</h1>
+
+    <div class="body-text">
+      <span class="typed">Great plans are grounded in experience and realism — what can be reused, reapplied, and practically achieved. This is why meaning matters not only as lived experience, but also as expectation. In that second realm, uncertainty waits to be navigated and stress to be regulated. It reveals a productive tension between the beginner's mind and the expert's mind. When both work on a hard problem, each operating from their own strength, the collaboration becomes more than the sum of its parts.</span>
+    </div>
+
+    <div class="stamp">Draft</div>
+  </div>
+
+</body>
+</html>
