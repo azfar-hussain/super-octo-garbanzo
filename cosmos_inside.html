@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Cosmos Inside</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Special+Elite&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink:      #2b1d0e;
+    --ink-faint:#6b4f35;
+    --paper:    #f0e6d0;
+    --paper-dark:#d9c9ae;
+    --accent:   #7a3b1e;
+    --rule:     rgba(90, 55, 25, 0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #c8b89a;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px 20px 80px;
+    font-family: 'IM Fell English', Georgia, serif;
+  }
+
+  /* paper sheet */
+  .sheet {
+    background: var(--paper);
+    max-width: 720px;
+    width: 100%;
+    padding: 70px 80px 80px;
+    position: relative;
+    box-shadow:
+      0 2px 6px rgba(0,0,0,0.18),
+      0 8px 30px rgba(0,0,0,0.22),
+      inset 0 0 120px rgba(180,140,90,0.12);
+    /* subtle paper texture via repeating lines */
+    background-image:
+      repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        var(--rule) 31px,
+        var(--rule) 32px
+      ),
+      radial-gradient(ellipse at 20% 0%, rgba(210,180,130,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(180,140,90,0.2) 0%, transparent 50%);
+    border-top: 1px solid var(--paper-dark);
+  }
+
+  /* left margin crease */
+  .sheet::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 72px; bottom: 0;
+    border-left: 1.5px solid rgba(190, 100, 80, 0.28);
+  }
+
+  /* torn top edge illusion */
+  .sheet::after {
+    content: '';
+    position: absolute;
+    top: -3px; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+      var(--paper) 0%, var(--paper-dark) 18%, var(--paper) 35%,
+      var(--paper-dark) 52%, var(--paper) 70%, var(--paper-dark) 88%, var(--paper) 100%
+    );
+    filter: blur(1px);
+  }
+
+  /* title block */
+  .title-block {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.2s;
+  }
+
+  .eyebrow {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* body text */
+  .body-text {
+    color: var(--ink);
+    line-height: 2.05;
+    font-size: clamp(1rem, 2.2vw, 1.12rem);
+    position: relative;
+  }
+
+  .stanza {
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  .stanza:nth-child(1) { animation-delay: 0.5s; }
+  .stanza:nth-child(2) { animation-delay: 0.85s; }
+  .stanza:nth-child(3) { animation-delay: 1.2s; }
+
+  .stanza p {
+    text-indent: 2.2em;
+  }
+
+  /* drop cap on first paragraph */
+  .stanza:first-child p::first-letter {
+    float: left;
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 4.2rem;
+    line-height: 0.78;
+    padding-right: 8px;
+    padding-top: 6px;
+    color: var(--accent);
+  }
+
+  /* inline emphasis */
+  .body-text em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ornamental divider */
+  .divider {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 1.1rem;
+    letter-spacing: 0.6em;
+    margin: 32px 0;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 1.05s;
+  }
+
+  /* closing flourish */
+  .coda {
+    margin-top: 52px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.5s;
+  }
+
+  .coda-line {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  .coda-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--rule);
+    margin: 14px auto;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* responsive */
+  @media (max-width: 560px) {
+    .sheet { padding: 50px 36px 60px; }
+    .sheet::before { left: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<article class="sheet">
+
+  <div class="title-block">
+    <p class="eyebrow">A Meditation</p>
+    <h1>The <em>Cosmos</em> Inside</h1>
+  </div>
+
+  <div class="body-text">
+
+    <div class="stanza">
+      <p>
+        Within each of us lie uncharted territories — depths that quietly await
+        the courage of our attention. To turn inward, to stir and tend to those
+        hidden places, is itself the journey: not a detour from life but its
+        truest passage. And there is humility waiting for us there. Measured
+        against the enormity of the universe, against the slow patience of nature
+        and the vast weave of society, our reach is brief and small — a single
+        thread in an incomprehensible tapestry. To know this is not defeat;
+        it is a kind of grace.
+      </p>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <div class="stanza">
+      <p>
+        For we carry <em>cosmos</em> within. The inner life may first appear as
+        disorder — a dense and restless noise, competing voices, shapeless feeling.
+        Yet disorder is not absence of order; it is order not yet heard. Beneath
+        the apparent cacophony, music is already composing itself, poetry is
+        crystallising, rhythm pulses like something tidal and ancient. We need
+        only grow still enough to receive it.
+      </p>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <div class="stanza">
+      <p>
+        If our calling is to make things simpler — to clear the path for
+        ourselves and others — then that calling must first be turned inward.
+        The inner life, left untended, grows dense with habit and noise.
+        Given <em>ritual</em>, given the gentle discipline of return,
+        it opens. Routines for the soul are not a narrowing but an architecture:
+        the scaffolding through which what is most alive in us learns, at last,
+        to breathe and move freely.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="coda">
+    <div class="coda-rule"></div>
+    <p class="coda-line">Tend the inner as you tend the outer</p>
+    <div class="coda-rule"></div>
+  </div>
+
+</article>
+
+</body>
+</html>
